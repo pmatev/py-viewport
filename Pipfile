@@ -9,7 +9,6 @@ fastapi = "*"
 uvicorn = "*"
 websockets = "*"
 typer = "*"
-fastapi-websocket-pubsub = "*"
 pyzmq = "*"
 ipdb = "*"
 
