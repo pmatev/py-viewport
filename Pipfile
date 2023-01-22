@@ -5,8 +5,14 @@ name = "pypi"
 
 [packages]
 numpy = "*"
+fastapi = "*"
+uvicorn = "*"
+websockets = "*"
+typer = "*"
+fastapi-websocket-pubsub = "*"
 
 [dev-packages]
+mypy = "*"
 
 [requires]
 python_version = "3.10"

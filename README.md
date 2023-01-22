@@ -26,16 +26,10 @@ Render some data from python
 from viewport import Viewport
 from PIL import Image
 
-v = Viewport()  # defaults to 'http://localhost:3000/ws'
+async with Viewport() as v:  # open async connection
+    img = np.zeros([100,100,3], dtype=np.uint8)
 
-# support PIL images
-with Image.open("./test.jpg") as img:
-    v.draw(img)
-
-# supports raw numpy image data
-img = np.zeros([100,100,3],dtype=np.uint8)
-v.draw(img)
-
+    await v.draw(img.tobytes())
 ```
 
 
