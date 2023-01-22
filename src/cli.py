@@ -2,6 +2,7 @@ import uvicorn
 import numpy as np
 import typer
 from viewport import Viewport
+from PIL import Image
 
 cli = typer.Typer(name="py-viewport", no_args_is_help=True)
 
@@ -18,9 +19,18 @@ def draw():
     """Send a test websocket message - CLIENT PUBLISH"""
 
     with Viewport() as v:
-        img = np.zeros([100,100,3], dtype=np.uint8)
+        img = Image.open('test.jpg').resize((100, 100))
+        img.putalpha(255)
+        arr = np.array(img)
 
-        v.draw(img.tobytes())
+        v.draw(arr.tobytes())
+
+        # rgb = np.array()
+        # rgba = np.concatenate((rgb, np.zeros((100, 100, 1))), axis=2).shape
+        # img = np.zeros([100,100,4], dtype=np.uint8)
+        # img[]
+
+
 
 
 if __name__ == "__main__":

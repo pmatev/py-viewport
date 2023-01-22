@@ -11,6 +11,7 @@ websockets = "*"
 typer = "*"
 pyzmq = "*"
 ipdb = "*"
+pillow = "*"
 
 [dev-packages]
 mypy = "*"
