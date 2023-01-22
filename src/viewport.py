@@ -1,8 +1,4 @@
-import asyncio
 import zmq
-from typing import Optional
-from fastapi_websocket_pubsub import PubSubClient, PubSubEndpoint
-
 
 class ViewportConnection:
     def __init__(self, ws) -> None:

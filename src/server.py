@@ -1,4 +1,6 @@
+import os
 from fastapi import FastAPI, WebSocket
+from fastapi.staticfiles import StaticFiles
 import zmq
 import zmq.asyncio
 
@@ -12,9 +14,7 @@ def on_startup():
     zmq_sock.bind("tcp://127.0.0.1:11001")
 
 
-@app.get("/")
-def read_root():
-    return
+app.mount("/", StaticFiles(directory="frontend/build", html=True), name="root")
 
 
 @app.websocket("/ws")

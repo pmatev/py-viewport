@@ -1,9 +1,7 @@
 import uvicorn
 import numpy as np
 import typer
-import asyncio
 from viewport import Viewport
-from fastapi_websocket_pubsub import PubSubClient
 
 cli = typer.Typer(name="py-viewport", no_args_is_help=True)
 
