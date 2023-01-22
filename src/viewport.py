@@ -1,16 +1,5 @@
 import zmq
 
-class ViewportConnection:
-    def __init__(self, ws) -> None:
-        self.ws = ws
-
-    async def __aexit__(self):
-        pass
-
-    async def __await__(self):
-        pass
-
-
 class Viewport:
     def __init__(self, uri = 'ws://localhost:3000/ws') -> None:
         self.uri: str = uri

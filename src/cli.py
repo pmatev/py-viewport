@@ -25,13 +25,6 @@ def draw():
 
         v.draw(arr.tobytes())
 
-        # rgb = np.array()
-        # rgba = np.concatenate((rgb, np.zeros((100, 100, 1))), axis=2).shape
-        # img = np.zeros([100,100,4], dtype=np.uint8)
-        # img[]
-
-
-
 
 if __name__ == "__main__":
     cli()
