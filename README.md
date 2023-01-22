@@ -26,10 +26,10 @@ Render some data from python
 from viewport import Viewport
 from PIL import Image
 
-async with Viewport() as v:  # open async connection
+with Viewport() as v:  # open async connection
     img = np.zeros([100,100,3], dtype=np.uint8)
 
-    await v.draw(img.tobytes())
+    v.draw(img.tobytes())
 ```
 
 

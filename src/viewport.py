@@ -1,6 +1,9 @@
 import asyncio
+import zmq
 from typing import Optional
 from fastapi_websocket_pubsub import PubSubClient, PubSubEndpoint
+
+
 
 
 class ViewportConnection:
@@ -17,16 +20,15 @@ class ViewportConnection:
 class Viewport:
     def __init__(self, uri = 'ws://localhost:3000/ws') -> None:
         self.uri: str = uri
-        self.client = PubSubClient()
 
-    async def __aenter__(self):
-        # try to keep the connection open forever
-        self.client.start_client(self.uri)
-        await self.client.wait_until_ready()
+    def __enter__(self):
+        self.zmq_ctx = zmq.Context()
+        self.zmq_sock = self.zmq_ctx.socket(zmq.REQ)
+        self.zmq_sock.connect('tcp://127.0.0.1:11001')
         return self
 
-    async def __aexit__(self, s, x, t):
-        await self.client.disconnect()
+    def __exit__(self, s, x, t):
+        self.zmq_sock.close()
 
-    async def draw(self, img: bytes) -> None:
-        await self.client.publish(['images'], data=img)
+    def draw(self, img: bytes) -> None:
+        self.zmq_sock.send(img)
