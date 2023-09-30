@@ -2,12 +2,20 @@ type Viewport = {
   DATA: any;
 }
 
-declare var __VIEWPORT__: Viewport;
+// declare var __VIEWPORT__: Viewport;
+
+declare global {
+  interface Window {
+    __VIEWPORT__: Viewport;
+  }
+}
+
 
 type Action = {
   type: string;
   data: any;
 }
+
 
 
 const root = document.getElementById('viewport-scene-root');
@@ -27,4 +35,8 @@ function run() {
   }
 }
 
-function init_canvas()
+function init_canvas(msg: any) {
+
+}
+
+export {}
