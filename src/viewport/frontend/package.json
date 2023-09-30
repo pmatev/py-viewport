@@ -20,6 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-static-scene": "webpack ",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -29,7 +30,6 @@
       "react-app/jest"
     ]
   },
-  "proxy": "http://localhost:3000/",
   "browserslist": {
     "production": [
       ">0.2%",
