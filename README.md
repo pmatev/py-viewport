@@ -13,26 +13,31 @@ Install
 pip install py-viewport
 ```
 
-Start the server
-```sh
-py-viewport start
-
-# viewport is live on http://localhost:3000/
+Run the examples
+```
+python examples/00_hello_world.py
 ```
 
-Render some data from python
+## Running in production
+Start the server as a standalone process
+```sh
+py-viewport start
+```
+
+## Usage
+
+Render an image to the viewport
 
 ```py
 from viewport import Viewport
-from PIL import Image
 
-with Viewport() as v:  # open async connection
+async with Viewport() as v:
     img = np.zeros([100,100,3], dtype=np.uint8)
 
-    v.draw(img.tobytes())
+    await v.draw(img.tobytes())
 ```
 
 
 ## Examples
 
-TODO
+- [examples/00_hello_world.py](examples/00_hello_world.py)
