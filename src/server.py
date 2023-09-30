@@ -22,7 +22,7 @@ async def index(arg):
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
 
-    await websocket.send_json({'type': 'init'})
+    # await websocket.send_json({'type': 'init'})
 
     while True:
         data = await websocket.receive_json()

@@ -13,5 +13,7 @@ htmlcov
 .lvimrc
 .DS_Store
 .envrc
-src/viewport/frontend/build
-src/viewport/frontend/.nodeenv
+src/frontend/build
+src/frontend/.nodeenv
+build
+docs
