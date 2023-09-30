@@ -10,7 +10,7 @@ class Action:
 
 
 class Element:
-    type: str = 'Element'
+    type: str = "Element"
 
     def build(self) -> List[Action]:
         return []
@@ -21,21 +21,16 @@ class Element:
 
 @dataclass
 class FrameBuffer(Element):
-    '''
+    """
     Must match the width / height of the parent canvas
-    '''
+    """
+
     width: int
     height: int
     data: np.ndarray
 
     def build(self) -> List[Action]:
-        return [
-            Action(action='SET_FRAME_BUFFER', data=self.to_json())
-        ]
+        return [Action(action="SET_FRAME_BUFFER", data=self.to_json())]
 
     def to_json(self) -> Dict[str, Any]:
-        return {
-            'width': self.width,
-            'height': self.height,
-            'data': self.data
-        }
+        return {"width": self.width, "height": self.height, "data": self.data}

@@ -8,11 +8,11 @@ import webbrowser
 
 logger = colorlog.getLogger(__name__)
 handler = colorlog.StreamHandler()
-handler.setFormatter(colorlog.ColoredFormatter(
-    "%(log_color)s%(levelname)s:%(name)s:%(message)s"
-))
+handler.setFormatter(
+    colorlog.ColoredFormatter("%(log_color)s%(levelname)s:%(name)s:%(message)s")
+)
 logger.addHandler(handler)
-logger.setLevel('INFO')
+logger.setLevel("INFO")
 
 
 class Viewport:
@@ -46,7 +46,7 @@ class Viewport:
         await self._websocket.send(img)
 
     async def _is_server_running(self):
-        logger.debug('Checking if server is running')
+        logger.debug("Checking if server is running")
         try:
             async with websockets.connect(urlunparse(self.websocket_uri)):
                 return True
@@ -55,7 +55,7 @@ class Viewport:
 
     @tenacity.retry(stop=tenacity.stop_after_attempt(5), wait=tenacity.wait_fixed(1))
     async def _connect(self):
-        logger.debug('Connecting to websocket server')
+        logger.debug("Connecting to websocket server")
         self._websocket = await websockets.connect(urlunparse(self.websocket_uri))
 
     async def _start_server(self):

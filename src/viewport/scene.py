@@ -7,12 +7,13 @@ from viewport.elements import Action, Element
 
 
 class Scene:
-    '''
+    """
     A Scene consists of one or more Canvas elements.
 
     The Scene controls the rendering and layout concerns.
     All graphics elements happen within a Canvas.
-    '''
+    """
+
     def __init__(self) -> None:
         self.canvases: List[Union[Canvas2D, Canvas3D]] = []
 
@@ -25,14 +26,14 @@ class Scene:
 
     def to_html(self) -> str:
         json_data = self.to_json()
-        return f'''
+        return f"""
             <script src="frontend/build/scene.js"></script>
             <div id="viewport-scene-root"></div>
             <script>
             window.__VIEWPORT__.DATA = {json.dumps(json_data)};
             window.__VIEWPORT__.run();
             </script>
-        '''
+        """
 
     def init_canvas_2d(self, width: int, height: int) -> Canvas2D:
         canvas = Canvas2D()

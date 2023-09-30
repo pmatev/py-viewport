@@ -12,20 +12,14 @@ class Canvas3D:
     def build(self) -> List[Action]:
         return [
             Action(
-                action='INIT_CANVAS',
+                action="INIT_CANVAS",
                 data={
-                    'canvas_type': '2D',
-                    'width': self.width,
-                    'height': self.height,
-                }
+                    "canvas_type": "2D",
+                    "width": self.width,
+                    "height": self.height,
+                },
             )
         ]
 
     def to_json(self) -> List[Dict[str, Any]]:
-        return [
-            {
-                'type': el.type,
-                'data': el.to_json()
-            }
-            for el in self.elements
-        ]
+        return [{"type": el.type, "data": el.to_json()} for el in self.elements]

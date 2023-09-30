@@ -14,7 +14,7 @@ cli = typer.Typer(name="py-viewport", no_args_is_help=True)
 def start(port: int = 3000, reload: bool = False):
     """Launch the viewport web server and web UI"""
 
-    uvicorn.run('server:app', host='0.0.0.0', port=port, reload=reload)
+    uvicorn.run("server:app", host="0.0.0.0", port=port, reload=reload)
 
 
 @cli.command()
@@ -22,7 +22,7 @@ def draw_ws():
     """Send a test websocket message - CLIENT PUBLISH"""
 
     with Viewport() as v:
-        img = Image.open('test.jpg').resize((100, 100))
+        img = Image.open("test.jpg").resize((100, 100))
         img.putalpha(255)
         arr = np.array(img)
 
@@ -36,11 +36,11 @@ def draw_html():
     scene = Scene()
     canvas = scene.init_canvas_2d(200, 200)
 
-    img = Image.open('test.jpg').resize((200, 200))
+    img = Image.open("test.jpg").resize((200, 200))
     img.putalpha(255)
 
     canvas.set_pixels(np.array(img))
-    canvas.add_image_layer('base', np.array(img))
+    canvas.add_image_layer("base", np.array(img))
 
     print(scene.to_html())
 
@@ -51,22 +51,22 @@ def example_scene_with_run_api():
 
     scene = Scene()
 
-    run = RunAPI('<run_id>')
-    rgb = run.get_stream('cameras/front_forward')
+    run = RunAPI("<run_id>")
+    rgb = run.get_stream("cameras/front_forward")
     trajectory_overlay = get_trajectory_vis(run)
     model_predictions = get_model_predictions_vis(run)
 
-    rgb_canvas = scene.init_canvas_2d('raw-canvas', 200, 200)
+    rgb_canvas = scene.init_canvas_2d("raw-canvas", 200, 200)
     rgb_canvas.register_stream(rgb)
-    overlays_canvas = scene.init_canvas_2d('overlays-canvas', 200, 200)
+    overlays_canvas = scene.init_canvas_2d("overlays-canvas", 200, 200)
     overlays_canvas.register_streams([trajectory_overlay, model_predictions])
 
-    scene.use_layout('RAW + Overlays')  # use a saved layout
+    scene.use_layout("RAW + Overlays")  # use a saved layout
 
     # static embed can also register to running websocket server
     scene.to_html()
 
-    '''
+    """
     open websocket
     read scene config and static injected data
     build the scene + canvas from the list of actions
@@ -76,7 +76,7 @@ def example_scene_with_run_api():
     -> user updates canvas widget (e.g. move slider)
         - update on frontend only?
 
-    '''
+    """
 
 
 if __name__ == "__main__":
