@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 from fastapi import FastAPI, WebSocket
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import FileResponse
@@ -12,17 +12,18 @@ zmq_sock = context.socket(zmq.REP)
 
 logger = logging.getLogger(__name__)
 
+FRONTEND_DIR = Path(__file__).parent / 'frontend'
+
 
 @app.on_event('startup')
 def on_startup():
     zmq_sock.connect("tcp://127.0.0.1:11001")
 
-
-app.mount("/static", StaticFiles(directory="frontend/build/static", html=True), name="root")
+app.mount("/static", StaticFiles(directory=FRONTEND_DIR / 'build/static', html=True), name="root")
 
 @app.route("/")
 async def index(arg):
-    return FileResponse('frontend/build/index.html')
+    return FileResponse(FRONTEND_DIR / 'build/index.html')
 
 
 @app.websocket("/viewport")

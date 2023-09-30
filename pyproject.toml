@@ -53,6 +53,7 @@ examples = [
 viewport = ["py.typed", "viewport/frontend/build/**/*"]
 
 [project.scripts]
+py-viewport = "cli:cli"
 py-viewport-dev-checks = "viewport.scripts.dev_checks:entrypoint"
 
 [tool.isort]
