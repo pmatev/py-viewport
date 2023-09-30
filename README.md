@@ -6,7 +6,7 @@ Send raw image data to a browser window from python over websockets.
 
 You can use this to live debug your python code and build visualisations without having to write out frames to a file or video.
 
-## Getting started
+## Getting started
 
 Install
 ```sh
