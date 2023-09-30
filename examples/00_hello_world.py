@@ -3,7 +3,7 @@ import numpy as np
 
 
 async def test_viewport():
-    async with Viewport() as v:  # open async connection
+    async with Viewport() as v:
         img = np.zeros([100, 100, 3], dtype=np.uint8)
 
         await v.draw(img.tobytes())

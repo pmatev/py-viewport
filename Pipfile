@@ -12,6 +12,8 @@ typer = "*"
 pyzmq = "*"
 ipdb = "*"
 pillow = "*"
+pytest = "*"
+pytest-asyncio = "*"
 
 [dev-packages]
 mypy = "*"

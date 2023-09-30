@@ -7,7 +7,7 @@ name = "py-viewport"
 version = "0.1.0"
 description = "A general purpose web visualisation toolkit in Python"
 readme = "README.md"
-license = { text="MIT" }
+license = { text = "MIT" }
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -16,7 +16,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
+    "Operating System :: OS Independent",
 ]
 dependencies = [
     "fastapi>=0.89.1",
@@ -39,12 +39,10 @@ dev = [
     "ruff==0.0.267",
     "black==23.3.0",
     "pre-commit==3.3.2",
+    "pytest>=6.2.5",
+    "pytest-asyncio>=0.21.0",
 ]
-examples = [
-    "smplx>=0.1.28",
-    "torch>=1.13.1",
-    "matplotlib>=3.7.1",
-]
+examples = ["smplx>=0.1.28", "torch>=1.13.1", "matplotlib>=3.7.1"]
 
 [project.urls]
 "GitHub" = "https://github.com/pmatev/py-viewport"
@@ -63,10 +61,15 @@ profile = "black"
 python_version = "3.8"
 ignore_missing_imports = true
 warn_unused_configs = true
-exclude="viewport/frontend/.nodeenv"
+exclude = "viewport/frontend/.nodeenv"
 
 [tool.pyright]
-exclude = ["./docs/**/*", "./examples/assets/**/*", "./viewport/frontend/.nodeenv", "./build"]
+exclude = [
+    "./docs/**/*",
+    "./examples/assets/**/*",
+    "./viewport/frontend/.nodeenv",
+    "./build",
+]
 
 [tool.black]
 exclude = "viewport/frontend/.nodeenv"

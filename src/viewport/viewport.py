@@ -16,10 +16,10 @@ logger.setLevel("INFO")
 
 
 class Viewport:
-    def __init__(self, uri="http://0.0.0.0:3000", reload=False) -> None:
+    def __init__(self, uri="http://0.0.0.0:3000", open_browser=False) -> None:
         self.host_uri = urlparse(uri)
         self.websocket_uri = self.host_uri._replace(scheme="ws", path="/viewport")
-        self.reload = reload
+        self.open_browser = open_browser
         self._server_proc = None
 
     async def __aenter__(self):
@@ -76,4 +76,5 @@ class Viewport:
             is_running = await self._is_server_running()
 
         logger.info("Viewport server started")
-        webbrowser.open(urlunparse(self.host_uri))
+        if self.open_browser:
+            webbrowser.open(urlunparse(self.host_uri))
