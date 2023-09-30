@@ -28,7 +28,6 @@ dependencies = [
     "tqdm>=4.0.0",
     "nodeenv>=1.8.0",
     "uvicorn>=0.20.0",
-    "pyzmq>=25.0.0",
     "pillow>=9.4.0",
 ]
 
