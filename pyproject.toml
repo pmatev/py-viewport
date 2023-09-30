@@ -1,0 +1,98 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py-viewport"
+version = "0.1.0"
+description = "A general purpose web visualisation toolkit in Python"
+readme = "README.md"
+license = { text="MIT" }
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+dependencies = [
+    "fastapi>=0.89.1",
+    "websockets>=10.4",
+    "typer>=0.7.0",
+    "numpy>=1.24.1",
+    "msgpack>=1.0.0",
+    "imageio>=2.0.0",
+    "tqdm>=4.0.0",
+    "nodeenv>=1.8.0",
+    "uvicorn>=0.20.0",
+    "pyzmq>=25.0.0",
+    "pillow>=9.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pyright>=1.1.308",
+    "mypy>=1.4.1",
+    "ruff==0.0.267",
+    "black==23.3.0",
+    "pre-commit==3.3.2",
+]
+examples = [
+    "smplx>=0.1.28",
+    "torch>=1.13.1",
+    "matplotlib>=3.7.1",
+]
+
+[project.urls]
+"GitHub" = "https://github.com/pmatev/py-viewport"
+
+[tool.setuptools.package-data]
+viewport = ["py.typed", "viewport/frontend/build/**/*"]
+
+[project.scripts]
+py-viewport-dev-checks = "viewport.scripts.dev_checks:entrypoint"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = "3.8"
+ignore_missing_imports = true
+warn_unused_configs = true
+exclude="viewport/frontend/.nodeenv"
+
+[tool.pyright]
+exclude = ["./docs/**/*", "./examples/assets/**/*", "./viewport/frontend/.nodeenv", "./build"]
+
+[tool.black]
+exclude = "viewport/frontend/.nodeenv"
+
+# [tool.ruff]
+# select = [
+#     "E",  # pycodestyle errors.
+#     "F",  # Pyflakes rules.
+#     "PLC",  # Pylint convention warnings.
+#     "PLE",  # Pylint errors.
+#     "PLR",  # Pylint refactor recommendations.
+#     "PLW",  # Pylint warnings.
+# ]
+# ignore = [
+#     "E741", # Ambiguous variable name. (l, O, or I)
+#     "E501",  # Line too long.
+#     "F722",  # Forward annotation false positive from jaxtyping. Should be caught by pyright.
+#     "F821",  # Forward annotation false positive from jaxtyping. Should be caught by pyright.
+#     "PLR2004",  # Magic value used in comparison.
+#     "PLR0915",  # Too many statements.
+#     "PLR0913",  # Too many arguments.
+#     "PLC0414",  # Import alias does not rename variable. (this is used for exporting names)
+#     "PLC1901",  # Use falsey strings.
+#     "PLR5501",  # Use `elif` instead of `else if`.
+#     "PLR0911",  # Too many return statements.
+#     "PLR0912",  # Too many branches.
+#     "PLW0603",  # Globa statement updates are discouraged.
+#     "PLW2901",  # For loop variable overwritten.
+# ]
+# exclude = [ ".nodeenv" ]
