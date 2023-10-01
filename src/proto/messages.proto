@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+message InitCanvas {
+  int32 width = 1;
+  int32 height = 2;
+  string background = 3;
+
+  enum RenderMode {
+    FRAMEBUFFER = 0;
+    TWO_D = 1;
+    THREE_D = 2;
+  }
+  RenderMode render_mode = 4;
+}
+
+message SetPixels {
+  int32 width = 3;
+  int32 height = 4;
+  bytes pixels = 5;
+}
