@@ -2,7 +2,6 @@
 
 # Generate TypeScript bindings
 protoc --plugin=protoc-gen-ts=frontend/node_modules/.bin/protoc-gen-ts \
-       --js_out=import_style=commonjs,binary:frontend/ \
        --ts_out=frontend/ \
        proto/*.proto
 

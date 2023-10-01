@@ -1,5 +1,18 @@
 syntax = "proto3";
 
+
+message Action {
+  enum Type {
+    INIT_CANVAS = 0;
+    SET_PIXELS = 1;
+  }
+  Type type = 1;
+  oneof payload {
+    InitCanvas init_canvas = 2;
+    SetPixels set_pixels = 3;
+  }
+}
+
 message InitCanvas {
   int32 width = 1;
   int32 height = 2;

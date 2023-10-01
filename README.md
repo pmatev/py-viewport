@@ -41,3 +41,44 @@ async with Viewport() as v:
 ## Examples
 
 - [examples/00_hello_world.py](examples/00_hello_world.py)
+
+## Development
+
+Install system dependencies
+```sh
+brew install protobuf
+```
+
+Activate the python environment
+```sh
+pipenv install
+pipenv shell
+```
+
+Install frontend dependencies and start the dev server
+```sh
+cd frontend/
+npm install
+```
+
+Compile protobuf bindings
+```sh
+cd src/
+./compile_protos.sh
+```
+
+Install the python package in editable mode
+```sh
+pip install -e .
+```
+
+Run the python server with live reload
+```sh
+py-viewport start --reload
+```
+
+Start the frontend dev server with live reload
+```sh
+cd frontend/
+npm run start
+```

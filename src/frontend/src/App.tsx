@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
+import { Action } from './proto/messages';
 
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
-  const [error, setError] = useState<Event | undefined>(undefined);
-  const [data, setData] = useState<Blob | undefined>(undefined);
 
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const ws = new WebSocket(`ws://localhost:3000/viewport`);
+    ws.binaryType = 'arraybuffer';
 
     ws.addEventListener('open', () => {
       setOpen(true);
@@ -21,20 +21,33 @@ function App() {
     })
 
     ws.addEventListener('error', error => {
-      setError(error);
+      console.error(error)
     })
 
     ws.addEventListener('message', async msg => {
-      setData(msg.data);
+      const protoMsg = Action.deserializeBinary(new Uint8Array(msg.data));
 
-      const data = msg.data as Blob;
-      const buffer = new Uint8ClampedArray(await data.arrayBuffer());
-      const imageData = new ImageData(buffer, 100, 100);
+      switch (protoMsg.type) {
+        case (Action.Type.INIT_CANVAS):
+          console.log('init canvas');
+          break;
+        case (Action.Type.SET_PIXELS):
+          console.log('set pixels');
+          break;
+        default:
+          console.log('unknown action', protoMsg);
+      }
 
-      const ctx = ref.current?.getContext('2d');
-      if (!ctx) return;
+      // setData(msg.data);
 
-      ctx.putImageData(imageData, 0, 0);
+      // const data = msg.data as Blob;
+      // const buffer = new Uint8ClampedArray(await data.arrayBuffer());
+      // const imageData = new ImageData(buffer, 100, 100);
+
+      // const ctx = ref.current?.getContext('2d');
+      // if (!ctx) return;
+
+      // ctx.putImageData(imageData, 0, 0);
     });
   }, []);
 
